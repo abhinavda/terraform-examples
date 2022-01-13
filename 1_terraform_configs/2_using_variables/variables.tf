@@ -25,3 +25,11 @@ variable "svc_account" {
 variable "project_name" {
   default = "ardent-dream-337620"
 }
+
+variable "map1" {
+  type = map(string)
+  default = {
+    us1="us1_val",
+    us2="u2_val"
+  }
+}

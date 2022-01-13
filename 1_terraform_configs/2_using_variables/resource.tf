@@ -40,6 +40,7 @@ resource "google_compute_instance_group" "staging_group" {
   named_port {
     name = "http"
     port = var.http_port
+    name1=var.map1["us1"]
   }
 
   named_port {
@@ -75,3 +76,4 @@ resource "google_compute_backend_service" "staging_service" {
   ]
 }
 // end - staging backend service
+
