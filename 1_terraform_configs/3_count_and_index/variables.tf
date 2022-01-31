@@ -29,12 +29,35 @@ variable "project_name" {
 variable "map1" {
   type = map(string)
   default = {
-    us1="us1_val",
-    us2="us2_val"
+    us1 = "us1_val",
+    us2 = "us2_val"
   }
 }
 
 variable "vpc-values" {
-  type = list
-  default = ["vpc-prod","vpc-staging","vpc-dev"]
+  type    = list(any)
+  default = ["vpc-prod", "vpc-staging", "vpc-dev"]
+}
+
+// Conditional Expressions
+variable "is_this_prod" {}
+
+
+// Using data source
+data "google_project" "project" {
+}
+
+output "project_number" {
+  value = data.google_project.project.number
+}
+
+output "project_number_values" {
+  value = data.google_project.project
+}
+
+// dynamic block
+variable "firewall_ports" {
+  type        = list(string)
+  description = "list of ports"
+  default     = ["80", "8080", "1000-2000"]
 }
